@@ -11,10 +11,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         C_Name : {
             type: Sequelize.STRING(64),
-            allowNull: false,
-            validate:{
-                is: `^[A-Za-z]+(?:[\\s-][A-Za-z]+)*$`
-            }
+            allowNull: false
         },
         C_Email : {
             type: Sequelize.STRING,
@@ -34,10 +31,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         C_Address: {
             type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                len: [10, 200] // validates that the address is between 10 and 200 characters long
-            }
+            allowNull: false
         },
         C_Password: {
             type: Sequelize.STRING,
@@ -46,7 +40,7 @@ module.exports = (sequelize, Sequelize) => {
         C_Username: {
             type: Sequelize.STRING,
             allowNull: false,
-            unique: true,
+            unique: true
         },
         C_Status: {
             type: Sequelize.ENUM('active', 'inactive'),

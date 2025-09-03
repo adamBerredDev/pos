@@ -10,26 +10,22 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         P_Name : {
-            type: Sequelize.STRING(64),
+            type: Sequelize.STRING(255),
             allowNull: false,
-            validate:{
-                is: `^[A-Za-z]+(?:[\\s-][A-Za-z]+)*$`
-            }
+            
         },
         P_Description: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {
-                len: [10, 200]
-            }
+            
         },
         P_BasePrice: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.FLOAT,
             allowNull: false,
         },
         P_SellPrice: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
+            type: Sequelize.FLOAT,
+            allowNull: false
         },
         P_Quantity: {
             type: Sequelize.INTEGER,
