@@ -45,7 +45,7 @@
 				console.log(categoryDescription);
 				console.log(categoryName);
 				if (categoryName != "" || categoryDescription != "") {
-					fetch("http://localhost:3000/api/customer/category/" + categoryNameForward, {
+					fetch("http://localhost:3077/api/customer/category/" + categoryNameForward, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",

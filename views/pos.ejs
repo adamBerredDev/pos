@@ -116,7 +116,7 @@
 			});
 
 			function getCategories() {
-				fetch("http://localhost:3000/api/customer/category", {
+				fetch("http://localhost:3077/api/customer/category", {
 					method: "GET",
 				})
 					.then(response => response.json())
@@ -134,7 +134,7 @@
 			}
 
 			function getProductsByCategory(categoryName) {
-				fetch("http://localhost:3000/api/customer/products", {
+				fetch("http://localhost:3077/api/customer/products", {
 					method: "GET",
 				})
 					.then(response => response.json())
@@ -227,7 +227,7 @@
 			function doBill() {
                 var total = document.querySelector('.total-value h6').innerText
 				if (orderList.length !== 0) {
-                	fetch("http://localhost:3000/api/customer/order", {
+                	fetch("http://localhost:3077/api/customer/order", {
                     	method: "POST",
                     	headers: {
                         	'Content-Type': 'application/json'

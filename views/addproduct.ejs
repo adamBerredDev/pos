@@ -76,7 +76,7 @@
 	<script>
 		currentCategory = ""
 		document.addEventListener("DOMContentLoaded", () => {
-			fetch("http://localhost:3000/api/customer/category")
+			fetch("http://localhost:3077/api/customer/category")
 				.then(response => {
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
@@ -101,7 +101,7 @@
 			loadSubCategories(currentCategory)
 		}
 		function loadSubCategories(parentCategory) {
-			fetch("http://localhost:3000/api/customer/subcategory?catName=" + parentCategory)
+			fetch("http://localhost:3077/api/customer/subcategory?catName=" + parentCategory)
 				.then(response => {
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
@@ -200,7 +200,7 @@
 			}
 			console.log(product)
 			if (productName !== "" && productDescription !== "" && sellPrice !== "" && basePrice !== "" && quantity !== "" && barCode !== "") {
-				fetch("http://localhost:3000/api/customer/products", {
+				fetch("http://localhost:3077/api/customer/products", {
 					method: "POST",
 					headers: {
 						'Content-Type': 'application/json'

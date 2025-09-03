@@ -69,7 +69,7 @@
                 var username = document.getElementById("signInUsername").value;
                 var password = document.getElementById("signInPassword").value;
 
-                fetch("http://localhost:3000/api/auth/signin", {
+                fetch("http://localhost:3077/api/auth/signin", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -83,7 +83,7 @@
                     else{
                         
 
-                        fetch("http://localhost:3000/api/auth/getEmail/"+username)
+                        fetch("http://localhost:3077/api/auth/getEmail/"+username)
 					.then(response => {
                         // alert("Enters")
 				if (!response.ok) {

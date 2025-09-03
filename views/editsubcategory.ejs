@@ -45,7 +45,7 @@
         </div>
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {
-				fetch("http://localhost:3000/api/customer/category")
+				fetch("http://localhost:3077/api/customer/category")
                 	.then(response => {
                     	if (!response.ok) {
                         	throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@
                 var subcategoryDescription = document.getElementById("subcategoryDescription").value;
 				var parentCategory = document.querySelector(".select2-selection__rendered").textContent
 				if (subcategoryName != "" || subcategoryDescription != "") {
-					fetch("http://localhost:3000/api/customer/subcategory/" + subcategoryNameForward, {
+					fetch("http://localhost:3077/api/customer/subcategory/" + subcategoryNameForward, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",
