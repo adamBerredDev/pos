@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const indexRoutes = require("./routes/index.routes")
 const db = require("./models/index.model.js");
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:3077"
 };
 app.use(cors(corsOptions));
 app.use(express.json())
@@ -22,7 +22,7 @@ db.sequelize.sync({force: false}).then(() => {
   console.error('Unable to connect to the database: ', error);
 });
 app.use('/',  indexRoutes);
-const port = 3000;
+const port = 3077;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
 }
