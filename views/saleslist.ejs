@@ -50,7 +50,7 @@
 		<script>
 			document.addEventListener("DOMContentLoaded", viewProduct());
 		function viewProduct() {
-			fetch("http://localhost:3077/api/customer/order", {
+			fetch("http://oulam.lingeriezen.com/api/customer/order", {
 				method: "GET",
 			}).then(response => {
 				if (!response.ok) {
@@ -93,7 +93,7 @@
 					td6.innerText = orderTotal
 					td7.innerText = Math.ceil(orderTotal / 100) * 100
 					td8.innerText = (Math.ceil(orderTotal / 100) * 100) - orderTotal
-					fetch("http://localhost:3077/api/auth/"+customerId)
+					fetch("http://oulam.lingeriezen.com/api/auth/"+customerId)
 					.then(response => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');

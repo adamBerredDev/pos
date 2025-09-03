@@ -49,7 +49,7 @@
 		<script>
 			document.addEventListener("DOMContentLoaded", viewSubCategory());
 		function viewSubCategory() {
-			fetch("http://localhost:3077/api/customer/subcategory", {
+			fetch("http://oulam.lingeriezen.com/api/customer/subcategory", {
 				method: "GET",
 			}).then(response => {
 				if (!response.ok) {
@@ -66,7 +66,7 @@
 		}
 
 		function deleteCategory(subcategoryName){
-fetch("http://localhost:3077/api/customer/subcategory/"+subcategoryName, {
+fetch("http://oulam.lingeriezen.com/api/customer/subcategory/"+subcategoryName, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ fetch("http://localhost:3077/api/customer/subcategory/"+subcategoryName, {
 					throw new Error('Network response was not ok');
 				}
 				const xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:3077/api/customer/subcategory', true);
+xhr.open('GET', 'http://oulam.lingeriezen.com/api/customer/subcategory', true);
 				var tbody =document.getElementsByTagName("tbody")[0];
 xhr.onreadystatechange = function() {
 	tbody.innerHTML = `<h1>data</h1>`

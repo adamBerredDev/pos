@@ -56,7 +56,7 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", viewProduct());
 		function viewProduct() {
-			fetch("http://localhost:3077/api/customer/products", {
+			fetch("http://oulam.lingeriezen.com/api/customer/products", {
 				method: "GET",
 			}).then(response => {
 				if (!response.ok) {
@@ -76,7 +76,7 @@
 
 		function deleteProduct(productId){
 			console.log(productId)
-fetch("http://localhost:3077/api/customer/products/"+productId, {
+fetch("http://oulam.lingeriezen.com/api/customer/products/"+productId, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ fetch("http://localhost:3077/api/customer/products/"+productId, {
 					throw new Error('Network response was not ok');
 				}
 				const xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:3077/api/customer/products', true);
+xhr.open('GET', 'http://oulam.lingeriezen.com/api/customer/products', true);
 				var tbody =document.getElementsByTagName("tbody")[0];
 xhr.onreadystatechange = function() {
 	tbody.innerHTML = `<h1>data</h1>`
