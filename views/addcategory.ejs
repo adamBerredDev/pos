@@ -39,7 +39,7 @@
                 var categoryName = document.getElementById("categoryName").value;
                 var categoryDescription = document.getElementById("categoryDescription").value;
 				if (categoryName !== "" && categoryDescription !== "") {
-                	fetch("http://oulam.lingeriezen.com/api/customer/category", {
+                	fetch("https://oulam.lingeriezen.com/api/customer/category", {
                     	method: "POST",
                     	headers: {
                         	'Content-Type': 'application/json'

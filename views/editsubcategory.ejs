@@ -45,7 +45,7 @@
         </div>
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {
-				fetch("http://oulam.lingeriezen.com/api/customer/category")
+				fetch("https://oulam.lingeriezen.com/api/customer/category")
                 	.then(response => {
                     	if (!response.ok) {
                         	throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@
                 var subcategoryDescription = document.getElementById("subcategoryDescription").value;
 				var parentCategory = document.querySelector(".select2-selection__rendered").textContent
 				if (subcategoryName != "" || subcategoryDescription != "") {
-					fetch("http://oulam.lingeriezen.com/api/customer/subcategory/" + subcategoryNameForward, {
+					fetch("https://oulam.lingeriezen.com/api/customer/subcategory/" + subcategoryNameForward, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",

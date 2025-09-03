@@ -116,7 +116,7 @@
 			});
 
 			function getCategories() {
-				fetch("http://oulam.lingeriezen.com/api/customer/category", {
+				fetch("https://oulam.lingeriezen.com/api/customer/category", {
 					method: "GET",
 				})
 					.then(response => response.json())
@@ -134,7 +134,7 @@
 			}
 
 			function getProductsByCategory(categoryName) {
-				fetch("http://oulam.lingeriezen.com/api/customer/products", {
+				fetch("https://oulam.lingeriezen.com/api/customer/products", {
 					method: "GET",
 				})
 					.then(response => response.json())
@@ -227,7 +227,7 @@
 			function doBill() {
                 var total = document.querySelector('.total-value h6').innerText
 				if (orderList.length !== 0) {
-                	fetch("http://oulam.lingeriezen.com/api/customer/order", {
+                	fetch("https://oulam.lingeriezen.com/api/customer/order", {
                     	method: "POST",
                     	headers: {
                         	'Content-Type': 'application/json'

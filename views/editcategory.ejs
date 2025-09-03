@@ -45,7 +45,7 @@
 				console.log(categoryDescription);
 				console.log(categoryName);
 				if (categoryName != "" || categoryDescription != "") {
-					fetch("http://oulam.lingeriezen.com/api/customer/category/" + categoryNameForward, {
+					fetch("https://oulam.lingeriezen.com/api/customer/category/" + categoryNameForward, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/json",

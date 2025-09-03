@@ -76,7 +76,7 @@
 	<script>
 		currentCategory = ""
 		document.addEventListener("DOMContentLoaded", () => {
-			fetch("http://oulam.lingeriezen.com/api/customer/category")
+			fetch("https://oulam.lingeriezen.com/api/customer/category")
 				.then(response => {
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
@@ -101,7 +101,7 @@
 			loadSubCategories(currentCategory)
 		}
 		function loadSubCategories(parentCategory) {
-			fetch("http://oulam.lingeriezen.com/api/customer/subcategory?catName=" + parentCategory)
+			fetch("https://oulam.lingeriezen.com/api/customer/subcategory?catName=" + parentCategory)
 				.then(response => {
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
@@ -200,7 +200,7 @@
 			}
 			console.log(product)
 			if (productName !== "" && productDescription !== "" && sellPrice !== "" && basePrice !== "" && quantity !== "" && barCode !== "") {
-				fetch("http://oulam.lingeriezen.com/api/customer/products", {
+				fetch("https://oulam.lingeriezen.com/api/customer/products", {
 					method: "POST",
 					headers: {
 						'Content-Type': 'application/json'
