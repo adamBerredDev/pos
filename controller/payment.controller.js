@@ -55,6 +55,29 @@ exports.findOne = (req, res) => {
             });
         });
 }
+
+exports.findOneByBarcode = (req, res) => {
+    const barcode = req.params.barcode;
+
+    Payments.findOne({
+        where: { P_BarCode: barcode }   // adapt field name if different
+    })
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+                message: "No product found with barcode=" + barcode
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving product with barcode=" + barcode
+        });
+    });
+};
+
 // Update a Payment by the id in the request
 exports.update = (req, res) => {
     const P_ID = req.params.P_ID;

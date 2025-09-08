@@ -112,6 +112,33 @@ exports.create = (req, res) => {
         });
       });
   };
+ exports.findOneByBarcode = (req, res) => {
+    const barcode = req.params.BARCODE;
+
+    if (!barcode) {
+        return res.status(400).send({
+            message: "Barcode parameter is required"
+        });
+    }
+
+    Products.findOne({   // Or Products if you have a separate model
+        where: { P_BarCode: barcode }   // <<--- must match your DB column name!
+    })
+    .then(data => {
+        if (data) {
+            res.status(200).send(data);
+        } else {
+            res.status(404).send({
+                message: `Cannot find Product with barcode=${barcode}.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving Product with barcode=" + barcode
+        });
+    });
+};
 // Find all Products and also apply pagination etc
   exports.findAll = (req, res) => {
   var condition

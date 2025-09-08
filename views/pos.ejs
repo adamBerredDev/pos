@@ -25,6 +25,10 @@
 							<div class="page-title">
 								<h4>Categories</h4>
 								<h6>Manage your purchases</h6>
+								<div class="order-scan mb-3">
+    <label for="barcodeInput">Scan code-barres</label>
+    <input type="text" id="barcodeInput" class="form-control" placeholder="Scanner ici..." autofocus>
+</div>
 							</div>
 						</div>
 
@@ -51,23 +55,7 @@
 									<a href="javascript:void(0);" onclick="clearOrderList()">Clear all</a>
 								</div>
 								<div class="product-table">
-									<ul class="product-lists">
-										<li>
-											<div class="productimg">
-												<div class="productcontet">
-													<h4>Pineapple
-														<a href="javascript:void(0);" class="ms-2"
-															data-bs-toggle="modal" data-bs-target="#edit"><img
-																src="/img/icons/edit-5.svg" alt="img"></a>
-													</h4>
-												</div>
-											</div>
-										</li>
-										<li>3000.00 </li>
-										<li><a class="confirm-text" href="javascript:void(0);"><img
-													src="/img/icons/delete-2.svg" alt="img"></a>
-										</li>
-									</ul>
+									
 
 								</div>
 							</div>
@@ -78,11 +66,11 @@
 									<ul>
 										<li>
 											<h5>Subtotal </h5>
-											<h6>55.00</h6>
+											<h6>0</h6>
 										</li>
 										<li class="total-value">
 											<h5>Total </h5>
-											<h6>55.00</h6>
+											<h6>0</h6>
 										</li>
 									</ul>
 								</div>
@@ -113,8 +101,32 @@
 			document.addEventListener("DOMContentLoaded", function () {
 				getCategories();
 				getProductsByCategory('all');  // Get all products initially
+				const barcodeInput = document.getElementById('barcodeInput');
+				barcodeInput.addEventListener("keypress", function (e) {
+					if (e.key === "Enter") {
+						e.preventDefault();
+						handleBarcode(barcodeInput.value.trim());
+						barcodeInput.value = ""; // vide l'input
+						barcodeInput.focus();    // remet le focus pour le prochain scan
+					}
+				});
 			});
-
+			function handleBarcode(code) {
+				fetch(`https://oulam.lingeriezen.com/api/customer/products/products/barcode/${code}`, {
+					method: "GET"
+				})
+				.then(response => response.json())
+				.then(product => {
+					if (product) {
+						addToOrderList(product);
+					} else {
+						alert("Produit introuvable pour le code: " + code);
+					}
+				})
+				.catch(error => {
+					console.error("Erreur recherche produit par code-barres:", error);
+				});
+			}
 			function getCategories() {
 				fetch("https://oulam.lingeriezen.com/api/customer/category", {
 					method: "GET",
@@ -134,38 +146,43 @@
 			}
 
 			function getProductsByCategory(categoryName) {
-				fetch("https://oulam.lingeriezen.com/api/customer/products", {
-					method: "GET",
-				})
+					fetch("https://oulam.lingeriezen.com/api/customer/products", {
+						method: "GET",
+					})
 					.then(response => response.json())
 					.then(data => {
 						const products = data.filter(product => product["Cat_Name"] === categoryName || categoryName === 'all');
 						const tabsContainer = document.querySelector('.tabs_container');
 						tabsContainer.innerHTML = '';  // Clear tabs container
+
+						// ✅ Créer une seule row
+						const row = document.createElement('div');
+						row.classList.add('row');
+
 						products.forEach(product => {
-							const div = document.createElement('div');
-							div.classList.add('tab_content', 'tab-pane', 'fade', 'show', 'active');
-							div.setAttribute('data-tab', product["Cat_Name"]);
-							div.innerHTML = `
-							<div class="row">
-								<div class="col-lg-3 col-sm-6 d-flex">
-									<div class="productset flex-fill ">
-										
-										<div class="check-product"><i class="fa fa-check"></i></div>
-										<div class="productsetcontent">
-											<h5>${product["Cat_Name"]}</h5>
-											<h4>${product["P_Name"]}</h4>
-											<h6>${product["P_SellPrice"]}.00</h6>
-										</div>
+							const col = document.createElement('div');
+							col.classList.add('col-lg-3', 'col-sm-6', 'd-flex');
+
+							col.innerHTML = `
+								<div class="productset flex-fill">
+									<div class="check-product"><i class="fa fa-check"></i></div>
+									<div class="productsetcontent">
+										<h5>${product["Cat_Name"]}</h5>
+										<h4>${product["P_Name"]}</h4>
+										<h6>${product["P_SellPrice"]}.00</h6>
 									</div>
 								</div>
-							</div>`;
-							div.onclick = function () { addToOrderList(product); };  // Add onclick event to add product to order list
-							tabsContainer.appendChild(div);
+							`;
+
+							col.onclick = function () { addToOrderList(product); };
+							row.appendChild(col);
 						});
+
+						tabsContainer.appendChild(row);
 					})
 					.catch(error => console.error('There was an error!', error));
-			}
+				}
+
 
 			function addToOrderList(product) {
 				orderList.push(product);
